@@ -1,0 +1,62 @@
+"Battle" GDD
+
+Objective
+-The goal of my game is to battle another player in a fast paced, arcade style shooting and dodging game.  The game revolves around a simple mechanic that takes seconds to learn, and the additional features keep users engaged and coming back for more.
+
+Gameplay Mechanics
+-My games core loop is a real time local multiplayer (2 players on 1 phone) that simultaneously battle each other 1 on 1 to try to destroy each other's ship.  In my first iteration these are the features that I want
+	-tap to move into different lanes (2 or 3)
+	-tap in the lane you are in to shoot a lazer
+	-take a loss in health when you get hit by an enemy lazer
+	-have different power ups (regain health, 3 second shield, double damage, etc.)float across the middle of the screen and the first player to swipe forward makes their ship accelerate to get that power-up
+	-have different obstacles (asteroids) that either need to be shot to be destroyed or dodged and possibly causes an instant kill or large amount of damage if it hits the player
+
+Level Design
+	-Levels can be incorporated later (maybe after I create an AI for a single player version) and will probably consist of different skin packs that can be unlocked or bought.
+
+Technical
+Controls/Input:
+	-Tap a lane to move to it
+	-Tap the lane you are in to shoot
+		-press and hold to shoot a more powerful shot
+	-Swipe forward for power ups
+
+Scenes:
+	-Main Menu / Mode Screen (Single Player, Multi Player)
+	-Gameplay Screen
+
+Classes/CBBs:
+	-Scenes
+		-Mode Select
+		-Gameplay
+			-single player
+			-local multiplayer
+		-Winner screen
+	-Nodes / Sprites
+		-Entity (abstract superclass)
+			-Player
+			-Enemy
+	-WorldObject (abstract superclass)
+		-bullet
+		-power up
+		-obstacle
+
+My game, Battle, is a fast-paced arcade game where you play as a rocket ship and and battle against a series of enemies to obtain a high score and unlock-able characters and maps.  The single player mode allows you to battle a series of AI ships and survive as long as you can!  The local-multiplayer mode allows you to approach a friend and battle them instantly to prove who the real battle champion is.  The simple and intuitive controls are easy to learn, and unlock able gear, skins, and level designs provide incentive to master the game.  
+
+
+MVP Milestones
+By Friday July 10: Title screen, gameplay scene, shoot and move mechanics, class structure in place
+
+By Friday July 17: Health decrease on collision with bullet, a winner, a playable prototype
+
+By Friday July 24: add powerups
+
+By Friday July 31: add an AI
+
+By Friday Aug 7: polish, art
+
+By Friday Aug 14: polish, art, unlockables? store?
+
+
+
+
