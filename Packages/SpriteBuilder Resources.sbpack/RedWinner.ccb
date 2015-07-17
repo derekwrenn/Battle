@@ -351,7 +351,7 @@ Wins!</string>
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Courier-Bold</string>
+						<string>Copperplate-Bold</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -610,6 +610,19 @@ Wins!</string>
 					</dict>
 					<dict>
 						<key>name</key>
+						<string>backgroundColor|Normal</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<real>0.0</real>
+							<real>0.0</real>
+							<real>0.0</real>
+							<real>1</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
 						<string>backgroundSpriteFrame|Highlighted</string>
 						<key>type</key>
 						<string>SpriteFrame</string>
@@ -676,7 +689,7 @@ Wins!</string>
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Courier-Bold</string>
+						<string>Copperplate-Bold</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -936,6 +949,19 @@ Wins!</string>
 					</dict>
 					<dict>
 						<key>name</key>
+						<string>backgroundColor|Normal</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<real>0.0</real>
+							<real>0.0</real>
+							<real>0.0</real>
+							<real>1</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
 						<string>backgroundSpriteFrame|Highlighted</string>
 						<key>type</key>
 						<string>SpriteFrame</string>
@@ -1002,7 +1028,7 @@ Wins!</string>
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Courier-Bold</string>
+						<string>Copperplate-Bold</string>
 					</dict>
 					<dict>
 						<key>name</key>

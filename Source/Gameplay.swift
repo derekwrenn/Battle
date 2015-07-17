@@ -12,10 +12,6 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate{
     
     weak var gamePhysicsNode: CCPhysicsNode!
     
-   // func update{
-        
-   // }
-    
     //The 2 Ships that are controlled by the users
     weak var bottomShip: Ship!
     weak var topShip: Ship!
@@ -34,9 +30,19 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate{
     weak var bottomHealthBar: CCNode!
     weak var topHealthBar: CCNode!
     
+    //The 2 cooldown bars
+    weak var bottomCooldownBar: CCNodeColor!
+    weak var topCooldownBar: CCNodeColor!
+    
     //The location enum that's used throughout this file
     enum location{
         case bottomLeft, bottomMiddle, bottomRight, topLeft, topMiddle, topRight, none
+    }
+    
+    override func update(delta: CCTime) {
+        bottomCooldownBar.scaleX = Float(bottomShip.ammo) * 0.01
+        topCooldownBar.scaleX = Float(topShip.ammo) * 0.01
+        
     }
     
     func didLoadFromCCB() {
