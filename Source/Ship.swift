@@ -10,10 +10,11 @@ import UIKit
 class Ship: CCSprite {
     
     weak var bulletSpawnPoint: CCNode!
-    var sideOfShip : Side = .Left
+    var sideOfShip : Side = .Middle
+    var health : Int = 100
     
     enum Side{
-        case Left, Right, Up, Down
+        case Left, Middle, Right, Up, Down
     }
     
     func move(destination: CGPoint) {
@@ -28,9 +29,9 @@ class Ship: CCSprite {
         lazer.position = bulletSpawnPoint.positionInPoints
         
         if direction == .Up {
-            lazer.physicsBody.applyImpulse(ccp(0, 200))
+            lazer.physicsBody.applyImpulse(ccp(0, 500))
         } else if direction == .Down {
-            lazer.physicsBody.applyImpulse(ccp(0, -200))
+            lazer.physicsBody.applyImpulse(ccp(0, -500))
         }
     }
     
