@@ -42,7 +42,6 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate{
     override func update(delta: CCTime) {
         bottomCooldownBar.scaleX = Float(bottomShip.ammo) * 0.01
         topCooldownBar.scaleX = Float(topShip.ammo) * 0.01
-        
     }
     
     func didLoadFromCCB() {

@@ -28,7 +28,7 @@ class Ship: CCSprite {
         }
         
         if ammo < 100 {
-            ammo++
+            ammo += 2
         }
     }
     
