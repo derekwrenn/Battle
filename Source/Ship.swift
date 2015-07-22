@@ -10,6 +10,7 @@ import UIKit
 class Ship: CCSprite {
     
     weak var bulletSpawnPoint: CCNode!
+    weak var laneSelector: CCNodeColor!
     var sideOfShip : Side = .Middle
     var health : Int = 100
     var ammo : Int = 100
@@ -32,7 +33,32 @@ class Ship: CCSprite {
         }
     }
     
+//    func decrementOpacity() {
+//        if opacity < 0.01 {
+//            laneSelector.visible = false
+//            return
+//        }
+//        else if opacity > 0.01 {
+//            opacity -= 0.01
+//        }
+//    }
+//    
+    func flash() {
+        laneSelector.visible = true
+        
+        let sequence : CCActionSequence = CCActionSequence(array: [CCActionFadeTo(duration: 0.3, opacity: 0), CCActionCallBlock(block: { () -> Void in
+            self.laneSelector.visible = false
+            self.laneSelector.opacity = 0.2
+        })])
+        
+        laneSelector.runAction(sequence)
+    }
+    
     func move(destination: CGPoint) {
+        //makes the lane selector flash
+        flash()
+        
+        //moves the ship
         self.positionInPoints = destination
     }
     

@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>22</integer>
+	<integer>31</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -278,10 +278,10 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>0.33300000429153442</real>
-							<real>0.5</real>
-							<integer>2</integer>
-							<integer>2</integer>
+							<real>106.59999847412109</real>
+							<real>284</real>
+							<integer>0</integer>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
@@ -967,7 +967,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
+							<real>0.9645000696182251</real>
 							<real>0.0</real>
 							<integer>0</integer>
 							<integer>2</integer>
@@ -981,9 +981,9 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
+							<real>284</real>
 							<real>0.019999999552965164</real>
-							<integer>2</integer>
+							<integer>0</integer>
 							<integer>2</integer>
 						</array>
 					</dict>
@@ -1010,6 +1010,14 @@
 							<false/>
 							<integer>0</integer>
 						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>rotation</string>
+						<key>type</key>
+						<string>Degrees</string>
+						<key>value</key>
+						<real>90</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1066,8 +1074,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
+							<real>0.071000002324581146</real>
 							<real>0.0</real>
-							<real>0.019999999552965164</real>
 							<integer>3</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -1080,9 +1088,9 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
+							<real>284</real>
 							<real>0.019999999552965164</real>
-							<integer>2</integer>
+							<integer>0</integer>
 							<integer>2</integer>
 						</array>
 					</dict>
@@ -1109,6 +1117,14 @@
 							<true/>
 							<integer>0</integer>
 						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>rotation</string>
+						<key>type</key>
+						<string>Degrees</string>
+						<key>value</key>
+						<real>90</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1165,7 +1181,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
+							<real>0.96449995040893555</real>
 							<real>0.0</real>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -1179,9 +1195,9 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
+							<real>284</real>
 							<real>0.019999999552965164</real>
-							<integer>2</integer>
+							<integer>0</integer>
 							<integer>2</integer>
 						</array>
 					</dict>
@@ -1215,7 +1231,7 @@
 						<key>type</key>
 						<string>Degrees</string>
 						<key>value</key>
-						<real>180</real>
+						<real>270</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1272,8 +1288,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
+							<real>0.92899990081787109</real>
 							<real>1</real>
-							<real>0.97999989986419678</real>
 							<integer>3</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -1286,9 +1302,9 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
+							<real>284</real>
 							<real>0.019999999552965164</real>
-							<integer>2</integer>
+							<integer>0</integer>
 							<integer>2</integer>
 						</array>
 					</dict>
@@ -1322,7 +1338,7 @@
 						<key>type</key>
 						<string>Degrees</string>
 						<key>value</key>
-						<real>180</real>
+						<real>270</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1346,6 +1362,8 @@
 						<real>1</real>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
