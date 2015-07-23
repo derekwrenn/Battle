@@ -5,12 +5,34 @@
 //  Created by Derek Wrenn on 7/21/15.
 //
 
-import UIKit
+import Foundation
 
 class ColorSelect: CCNode {
    
     weak var bottomGradient: CCNodeGradient!
     weak var topGradient: CCNodeGradient!
+    
+    weak var bPickYourColor: CCLabelTTF!
+    weak var tPickYourColor: CCLabelTTF!
+    
+    weak var bNextButton: CCButton!
+    weak var tNextButton: CCButton!
+    
+    var bReady = false
+    var tReady = false
+    
+    func transitionToGameplay(buttonPressed: CCButton) {
+        if buttonPressed.name == "bNextButton" {
+            bNextButton.enabled = false
+            
+            
+        } else if buttonPressed.name == "tNextButton" {
+            tNextButton.enabled = false
+    
+            
+        }
+    }
+
     
     func changeColor(buttonPressed: CCButton) {
         switch buttonPressed.name {
@@ -46,17 +68,16 @@ class ColorSelect: CCNode {
                 topGradient.startColor = CCColor.purpleColor()
             case "topMagenta":
                 topGradient.startColor = CCColor.magentaColor()
-            case "black":
-                topGradient.endColor = CCColor.blackColor()
-                bottomGradient.endColor = CCColor.blackColor()
-            case "white":
-                topGradient.endColor = CCColor.whiteColor()
-                bottomGradient.endColor = CCColor.whiteColor()
-            
             default:
                 println("nanananabooboobooboostickyourheadindoodoo")
-            
         }
         
+        if buttonPressed.name.hasPrefix("bottom") {
+            bPickYourColor.visible = false
+            bNextButton.visible = true
+        } else if buttonPressed.name.hasPrefix("top") {
+            tPickYourColor.visible = false
+            tNextButton.visible = true
+        }
     }
 }

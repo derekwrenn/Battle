@@ -5,7 +5,7 @@
 //  Created by Derek Wrenn on 7/2/15.
 //
 
-import UIKit
+import Foundation
 
 class Ship: CCSprite {
     
@@ -16,7 +16,7 @@ class Ship: CCSprite {
     var ammo : Int = 100
     var firstShot : Bool = true
     
-    enum Side{
+    enum Side {
         case Left, Middle, Right, Up, Down
     }
     
@@ -32,17 +32,7 @@ class Ship: CCSprite {
             ammo += 2
         }
     }
-    
-//    func decrementOpacity() {
-//        if opacity < 0.01 {
-//            laneSelector.visible = false
-//            return
-//        }
-//        else if opacity > 0.01 {
-//            opacity -= 0.01
-//        }
-//    }
-//    
+      
     func flash() {
         laneSelector.visible = true
         
