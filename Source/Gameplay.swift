@@ -33,6 +33,10 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate{
     weak var bottomCooldownBar: CCNodeColor!
     weak var topCooldownBar: CCNodeColor!
     
+    //The 2 Gradients
+    weak var bottomGradient: CCNodeGradient!
+    weak var topGradient: CCNodeGradient!
+    
     //The location enum that's used throughout this file
     enum location{
         case bottomLeft, bottomMiddle, bottomRight, topLeft, topMiddle, topRight, none
@@ -64,8 +68,8 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate{
             ship.removeFromParent()
             if bottomShip.health == 0 {
                 //blue wins
-                let blueWinnerScene = CCBReader.loadAsScene("BlueWinner")
-                CCDirector.sharedDirector().presentScene(blueWinnerScene)
+                //let blueWinnerScene = CCBReader.loadAsScene("BlueWinner")
+                //CCDirector.sharedDirector().presentScene(blueWinnerScene)
             } else if topShip.health == 0 {
                 //red wins
                 let redWinnerScene = CCBReader.loadAsScene("RedWinner")
@@ -181,11 +185,11 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate{
             }
         default:
             println("wayyyyyy up i feel blessed")
-    }
+        }
         
 
 
-}
+    }
 }
 
 

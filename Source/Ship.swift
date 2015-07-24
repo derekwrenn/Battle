@@ -45,7 +45,11 @@ class Ship: CCSprite {
     }
     
     func move(destination: CGPoint) {
-        //makes the lane selector flash
+        //stops all animations and makes the lane selector flash
+        if laneSelector.numberOfRunningActions() > 0 {
+            laneSelector.stopAllActions()
+            laneSelector.opacity = 0.2
+        }
         flash()
         
         //moves the ship

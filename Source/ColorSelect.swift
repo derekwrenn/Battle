@@ -24,13 +24,27 @@ class ColorSelect: CCNode {
     func transitionToGameplay(buttonPressed: CCButton) {
         if buttonPressed.name == "bNextButton" {
             bNextButton.enabled = false
-            
+            if tNextButton.enabled == false {
+                setColors()
+            }
             
         } else if buttonPressed.name == "tNextButton" {
             tNextButton.enabled = false
-    
-            
+            if bNextButton.enabled == false {
+                setColors()
+            }
         }
+    }
+    
+    func setColors() {
+        var gameplayScene = CCBReader.load("Gameplay") as! Gameplay
+        var newScene : CCScene = CCScene()
+        gameplayScene.bottomGradient.startColor = self.bottomGradient.startColor
+        gameplayScene.topGradient.startColor = self.topGradient.startColor
+        gameplayScene.bottomCooldownBar.color = self.bottomGradient.startColor
+        gameplayScene.topCooldownBar.color = self.topGradient.startColor
+        newScene.addChild(gameplayScene)
+        CCDirector.sharedDirector().presentScene(newScene)
     }
 
     

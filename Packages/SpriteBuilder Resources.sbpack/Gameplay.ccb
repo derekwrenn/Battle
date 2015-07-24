@@ -51,7 +51,7 @@
 				<key>displayName</key>
 				<string>BottomGradient</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>bottomGradient</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -400,7 +400,7 @@
 				<key>displayName</key>
 				<string>TopGradient</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>topGradient</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -510,6 +510,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -1447,8 +1449,6 @@
 								<string>Ship.ccb</string>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 					<dict>
 						<key>UUID</key>
