@@ -7,44 +7,45 @@
 
 import Foundation
 
-class Gameplay: CCNode, CCPhysicsCollisionDelegate{
+//The location enum that's used throughout this file
+enum location{
+    case right, left, middle, bottomLeft, bottomMiddle, bottomRight, topLeft, topMiddle, topRight, none
+}
+
+class Gameplay: CCNode, CCPhysicsCollisionDelegate {
     
     weak var gamePhysicsNode: CCPhysicsNode!
-    
-    //The 2 Ships that are controlled by the users
-    weak var bottomShip: Ship!
-    weak var topShip: Ship!
+
     
     //The 3 bottom lane nodes
     weak var bottomLeftNode: CCNode!
-    weak var bottomMiddleNode: CCNode!
+    weak var bottomMiddleLeftNode: CCNode!
+    weak var bottomMiddleRightNode: CCNode!
     weak var bottomRightNode: CCNode!
     
     //The 3 top lane nodes
     weak var topLeftNode: CCNode!
-    weak var topMiddleNode: CCNode!
+    weak var topMiddleLeftNode: CCNode!
+    weak var topMiddleRightNode: CCNode!
     weak var topRightNode: CCNode!
     
-    //The 2 health bars
-    weak var bottomHealthBar: CCNode!
-    weak var topHealthBar: CCNode!
+    //Son and Father Pirates
+    weak var pirateSon: Pirate!
+    weak var pirateDad: Pirate!
     
-    //The 2 cooldown bars
-    weak var bottomCooldownBar: CCNodeColor!
-    weak var topCooldownBar: CCNodeColor!
+    //6 cannons
+    weak var topLeftCannon: Cannon!
+    weak var topMiddleCannon: Cannon!
+    weak var topRightCannon: Cannon!
+   
+    weak var bottomLeftCannon: Cannon!
+    weak var bottomMiddleCannon: Cannon!
+    weak var bottomRightCannon: Cannon!
     
-    //The 2 Gradients
-    weak var bottomGradient: CCNodeGradient!
-    weak var topGradient: CCNodeGradient!
-    
-    //The location enum that's used throughout this file
-    enum location{
-        case bottomLeft, bottomMiddle, bottomRight, topLeft, topMiddle, topRight, none
-    }
+    weak var topShip: CCNode!
     
     override func update(delta: CCTime) {
-        bottomCooldownBar.scaleX = Float(bottomShip.ammo) * 0.01
-        topCooldownBar.scaleX = Float(topShip.ammo) * 0.01
+      
     }
     
     func didLoadFromCCB() {
@@ -53,30 +54,30 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate{
         gamePhysicsNode.collisionDelegate = self
     }
     
-    func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, lazer: CCNode!, ship: Ship!) {
-        lazer.removeFromParent()
-        if bottomShip == ship {
-            bottomHealthBar.scaleX -= 0.05
-            bottomShip.health -= 5
-            
-        } else if topShip == ship {
-            topHealthBar.scaleX -= 0.05
-            topShip.health -= 5
-        }
-        
-        if ship.health == 0 {
-            ship.removeFromParent()
-            if bottomShip.health == 0 {
-                //blue wins
-                //let blueWinnerScene = CCBReader.loadAsScene("BlueWinner")
-                //CCDirector.sharedDirector().presentScene(blueWinnerScene)
-            } else if topShip.health == 0 {
-                //red wins
-                let redWinnerScene = CCBReader.loadAsScene("RedWinner")
-                CCDirector.sharedDirector().presentScene(redWinnerScene)
-            }
-        }
-    }
+//    func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, lazer: CCNode!, ship: Ship!) {
+//        lazer.removeFromParent()
+//        if bottomShip == ship {
+//            bottomHealthBar.scaleX -= 0.05
+//            bottomShip.health -= 5
+//            
+//        } else if topShip == ship {
+//            topHealthBar.scaleX -= 0.05
+//            topShip.health -= 5
+//        }
+//        
+//        if ship.health == 0 {
+//            ship.removeFromParent()
+//            if bottomShip.health == 0 {
+//                //blue wins
+//                //let blueWinnerScene = CCBReader.loadAsScene("BlueWinner")
+//                //CCDirector.sharedDirector().presentScene(blueWinnerScene)
+//            } else if topShip.health == 0 {
+//                //red wins
+//                let redWinnerScene = CCBReader.loadAsScene("RedWinner")
+//                CCDirector.sharedDirector().presentScene(redWinnerScene)
+//            }
+//        }
+//    }
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         //stores which of the 6 nodes on the screen was touched in the screenTouch var
@@ -122,69 +123,97 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate{
     }
     
     func moveOrFire(touch : location){
-        //switch statement that moves or fires the ship
         switch touch {
         case .bottomLeft:
-            if bottomShip.sideOfShip == .Left {
-                bottomShip.fire(.Up)
-            } else if bottomShip.sideOfShip == .Middle {
-                bottomShip.move(bottomLeftNode.positionInPoints)
-                bottomShip.sideOfShip = .Left
-            } else if bottomShip.sideOfShip == .Right {
-                bottomShip.move(bottomMiddleNode.positionInPoints)
-                bottomShip.sideOfShip = .Middle
+            if pirateSon.sideOfCharacter == .left && pirateSon.stateOfCharacter == .idle {
+                bottomLeftCannon.fire()
+                pirateSon.fire()
+            } else if pirateSon.sideOfCharacter == .middle {
+                pirateSon.flipX = true
+                pirateSon.move(bottomLeftNode.positionInPoints, time: 0.25)
+                pirateSon.sideOfCharacter = .left
+            } else if pirateSon.sideOfCharacter == .right {
+                pirateSon.flipX = true
+                pirateSon.move(bottomLeftNode.positionInPoints, time: 0.5)
+                pirateSon.sideOfCharacter = .left
             }
+           
             
         case .bottomMiddle:
-            if bottomShip.sideOfShip == .Left || bottomShip.sideOfShip == .Right {
-                bottomShip.move(bottomMiddleNode.positionInPoints)
-                bottomShip.sideOfShip = .Middle
-            } else if bottomShip.sideOfShip == .Middle {
-                bottomShip.fire(.Up)
+            if pirateSon.sideOfCharacter == .left {
+                pirateSon.flipX = false
+                pirateSon.move(bottomMiddleLeftNode.positionInPoints, time: 0.25)
+                pirateSon.sideOfCharacter = .middle
+            } else if pirateSon.sideOfCharacter == .middle && pirateSon.stateOfCharacter == .idle {
+                bottomMiddleCannon.fire()
+                pirateSon.fire()
+            } else if pirateSon.sideOfCharacter == .right {
+                pirateSon.flipX = true
+                pirateSon.move(bottomMiddleRightNode.positionInPoints, time: 0.25)
+                pirateSon.sideOfCharacter = .middle
             }
+           
             
         case .bottomRight:
-            if bottomShip.sideOfShip == .Left {
-                bottomShip.move(bottomMiddleNode.positionInPoints)
-                bottomShip.sideOfShip = .Middle
-            } else if bottomShip.sideOfShip == .Middle {
-                bottomShip.move(bottomRightNode.positionInPoints)
-                bottomShip.sideOfShip = .Right
-            } else if bottomShip.sideOfShip == .Right {
-                bottomShip.fire(.Up)
+            if pirateSon.sideOfCharacter == .left {
+                pirateSon.flipX = false
+                pirateSon.move(bottomRightNode.positionInPoints, time: 0.5)
+                pirateSon.sideOfCharacter = .right
+            } else if pirateSon.sideOfCharacter == .middle {
+                pirateSon.flipX = false
+                pirateSon.move(bottomRightNode.positionInPoints, time: 0.25)
+                pirateSon.sideOfCharacter = .right
+            } else if pirateSon.sideOfCharacter == .right && pirateSon.stateOfCharacter == .idle {
+                bottomRightCannon.fire()
+                pirateSon.fire()
             }
+         
             
         case .topLeft:
-            if topShip.sideOfShip == .Left {
-                topShip.fire(.Down)
-            } else if topShip.sideOfShip == .Middle {
-                topShip.move(topLeftNode.positionInPoints)
-                topShip.sideOfShip = .Left
-            } else if topShip.sideOfShip == .Right {
-                topShip.move(topMiddleNode.positionInPoints)
-                topShip.sideOfShip = .Middle
+            if pirateDad.sideOfCharacter == .left && pirateDad.stateOfCharacter == .idle {
+                topLeftCannon.fire()
+                pirateDad.fire()
+            } else if pirateDad.sideOfCharacter == .middle {
+                pirateDad.flipX = false
+                pirateDad.move(topShip.convertToWorldSpace(topLeftNode.positionInPoints), time: 0.25)
+                pirateDad.sideOfCharacter = .left
+            } else if pirateDad.sideOfCharacter == .right {
+                pirateDad.flipX = false
+                pirateDad.move(topShip.convertToWorldSpace(topLeftNode.positionInPoints), time: 0.5)
+                pirateDad.sideOfCharacter = .left
             }
+            
             
         case .topMiddle:
-            if topShip.sideOfShip == .Left || topShip.sideOfShip == .Right {
-                topShip.move(topMiddleNode.positionInPoints)
-                topShip.sideOfShip = .Middle
-            } else if topShip.sideOfShip == .Middle {
-                topShip.fire(.Down)
+            if pirateDad.sideOfCharacter == .left {
+                pirateDad.flipX = true
+                pirateDad.move(topShip.convertToWorldSpace(topMiddleLeftNode.positionInPoints), time: 0.25)
+                pirateDad.sideOfCharacter = .middle
+            } else if pirateDad.sideOfCharacter == .middle && pirateDad.stateOfCharacter == .idle {
+                topMiddleCannon.fire()
+                pirateDad.fire()
+            } else if pirateDad.sideOfCharacter == .right {
+                pirateDad.flipX = false
+                pirateDad.move(topShip.convertToWorldSpace(topMiddleRightNode.positionInPoints), time: 0.25)
+                pirateDad.sideOfCharacter = .middle
             }
             
+            
         case .topRight:
-            if topShip.sideOfShip == .Left {
-                topShip.move(topMiddleNode.positionInPoints)
-                topShip.sideOfShip = .Middle
-            } else if topShip.sideOfShip == .Middle {
-                topShip.move(topRightNode.positionInPoints)
-                topShip.sideOfShip = .Right
-            } else if topShip.sideOfShip == .Right {
-                topShip.fire(.Down)
+            if pirateDad.sideOfCharacter == .left {
+                pirateDad.flipX = true
+                pirateDad.move(topShip.convertToWorldSpace(topRightNode.positionInPoints), time: 0.5)
+                pirateDad.sideOfCharacter = .right
+            } else if pirateDad.sideOfCharacter == .middle {
+                pirateDad.flipX = true
+                pirateDad.move(topShip.convertToWorldSpace(topRightNode.positionInPoints), time: 0.25)
+                pirateDad.sideOfCharacter = .right
+            } else if pirateDad.sideOfCharacter == .right && pirateDad.stateOfCharacter == .idle {
+                topRightCannon.fire()
+                pirateDad.fire()
             }
         default:
-            println("wayyyyyy up i feel blessed")
+            println("boom")
         }
         
 
