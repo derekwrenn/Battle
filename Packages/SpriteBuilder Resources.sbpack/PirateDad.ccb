@@ -1214,11 +1214,15 @@
 			<key>bodyShape</key>
 			<integer>0</integer>
 			<key>collisionCategories</key>
-			<array/>
+			<array>
+				<string>pirate</string>
+			</array>
 			<key>collisionMask</key>
-			<array/>
+			<array>
+				<string>cannonball</string>
+			</array>
 			<key>collisionType</key>
-			<string></string>
+			<string>pirate</string>
 			<key>cornerRadius</key>
 			<real>0.0</real>
 			<key>density</key>
@@ -1236,122 +1240,44 @@
 					<real>0.4609375</real>
 				</array>
 				<array>
-					<real>46.41015625</real>
-					<real>61.4296875</real>
-				</array>
-				<array>
-					<real>29.38671875</real>
-					<real>108.90625</real>
-				</array>
-				<array>
-					<real>5.890625</real>
-					<real>100.94140625</real>
-				</array>
-				<array>
-					<real>5.890625</real>
-					<real>133.703125</real>
-				</array>
-				<array>
-					<real>59.15234375</real>
-					<real>144.578125</real>
-				</array>
-				<array>
-					<real>70.42578125</real>
-					<real>172.484375</real>
+					<real>43.367218017578125</real>
+					<real>127.19142150878906</real>
 				</array>
 				<array>
 					<real>117.7890625</real>
 					<real>172.69921875</real>
 				</array>
 				<array>
-					<real>142.59375</real>
-					<real>147.67578125</real>
+					<real>169.91799926757812</real>
+					<real>168.00393676757812</real>
 				</array>
 				<array>
-					<real>143.3203125</real>
-					<real>22.82421875</real>
-				</array>
-				<array>
-					<real>128.7890625</real>
-					<real>-0.76171875</real>
+					<real>167.08596801757812</real>
+					<real>3.8125076293945312</real>
 				</array>
 			</array>
 			<key>polygons</key>
 			<array>
 				<array>
 					<array>
-						<real>142.59375</real>
-						<real>147.67578125</real>
+						<real>167.08596801757812</real>
+						<real>3.8125076293945312</real>
+					</array>
+					<array>
+						<real>169.91799926757812</real>
+						<real>168.00393676757812</real>
 					</array>
 					<array>
 						<real>117.7890625</real>
 						<real>172.69921875</real>
 					</array>
 					<array>
-						<real>70.42578125</real>
-						<real>172.484375</real>
-					</array>
-					<array>
-						<real>59.15234375</real>
-						<real>144.578125</real>
-					</array>
-				</array>
-				<array>
-					<array>
-						<real>59.15234375</real>
-						<real>144.578125</real>
-					</array>
-					<array>
-						<real>5.890625</real>
-						<real>133.703125</real>
-					</array>
-					<array>
-						<real>5.890625</real>
-						<real>100.94140625</real>
-					</array>
-					<array>
-						<real>29.38671875</real>
-						<real>108.90625</real>
-					</array>
-				</array>
-				<array>
-					<array>
-						<real>59.15234375</real>
-						<real>144.578125</real>
-					</array>
-					<array>
-						<real>29.38671875</real>
-						<real>108.90625</real>
-					</array>
-					<array>
-						<real>46.41015625</real>
-						<real>61.4296875</real>
-					</array>
-				</array>
-				<array>
-					<array>
-						<real>46.41015625</real>
-						<real>61.4296875</real>
+						<real>43.367218017578125</real>
+						<real>127.19142150878906</real>
 					</array>
 					<array>
 						<real>55.80859375</real>
 						<real>0.4609375</real>
-					</array>
-					<array>
-						<real>128.7890625</real>
-						<real>-0.76171875</real>
-					</array>
-					<array>
-						<real>143.3203125</real>
-						<real>22.82421875</real>
-					</array>
-					<array>
-						<real>142.59375</real>
-						<real>147.67578125</real>
-					</array>
-					<array>
-						<real>59.15234375</real>
-						<real>144.578125</real>
 					</array>
 				</array>
 			</array>

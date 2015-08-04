@@ -548,11 +548,15 @@
 			<key>bodyShape</key>
 			<integer>0</integer>
 			<key>collisionCategories</key>
-			<array/>
+			<array>
+				<string>pirate</string>
+			</array>
 			<key>collisionMask</key>
-			<array/>
+			<array>
+				<string>cannonball</string>
+			</array>
 			<key>collisionType</key>
-			<string></string>
+			<string>pirate</string>
 			<key>cornerRadius</key>
 			<real>0.0</real>
 			<key>density</key>
@@ -566,36 +570,16 @@
 			<key>points</key>
 			<array>
 				<array>
-					<real>51.742698669433594</real>
-					<real>130.5550537109375</real>
+					<real>13.723674774169922</real>
+					<real>299.84402465820312</real>
 				</array>
 				<array>
-					<real>-1.0006461143493652</real>
-					<real>269.51394653320312</real>
-				</array>
-				<array>
-					<real>39.741664886474609</real>
-					<real>321.41366577148438</real>
-				</array>
-				<array>
-					<real>111.11927795410156</real>
-					<real>366.53128051757812</real>
-				</array>
-				<array>
-					<real>205.93655395507812</real>
-					<real>364.51318359375</real>
-				</array>
-				<array>
-					<real>265.50335693359375</real>
-					<real>319.19708251953125</real>
+					<real>176.81900024414062</real>
+					<real>392.75875854492188</real>
 				</array>
 				<array>
 					<real>312.83755493164062</real>
 					<real>299.66128540039062</real>
-				</array>
-				<array>
-					<real>263.00555419921875</real>
-					<real>177.64939880371094</real>
 				</array>
 				<array>
 					<real>217.92930603027344</real>
@@ -610,44 +594,6 @@
 			<array>
 				<array>
 					<array>
-						<real>263.00555419921875</real>
-						<real>177.64939880371094</real>
-					</array>
-					<array>
-						<real>312.83755493164062</real>
-						<real>299.66128540039062</real>
-					</array>
-					<array>
-						<real>265.50335693359375</real>
-						<real>319.19708251953125</real>
-					</array>
-				</array>
-				<array>
-					<array>
-						<real>265.50335693359375</real>
-						<real>319.19708251953125</real>
-					</array>
-					<array>
-						<real>205.93655395507812</real>
-						<real>364.51318359375</real>
-					</array>
-					<array>
-						<real>111.11927795410156</real>
-						<real>366.53128051757812</real>
-					</array>
-					<array>
-						<real>39.741664886474609</real>
-						<real>321.41366577148438</real>
-					</array>
-					<array>
-						<real>-1.0006461143493652</real>
-						<real>269.51394653320312</real>
-					</array>
-					<array>
-						<real>51.742698669433594</real>
-						<real>130.5550537109375</real>
-					</array>
-					<array>
 						<real>130.03475952148438</real>
 						<real>-7.2624707221984863</real>
 					</array>
@@ -656,8 +602,16 @@
 						<real>-7.9075827598571777</real>
 					</array>
 					<array>
-						<real>263.00555419921875</real>
-						<real>177.64939880371094</real>
+						<real>312.83755493164062</real>
+						<real>299.66128540039062</real>
+					</array>
+					<array>
+						<real>176.81900024414062</real>
+						<real>392.75875854492188</real>
+					</array>
+					<array>
+						<real>13.723674774169922</real>
+						<real>299.84402465820312</real>
 					</array>
 				</array>
 			</array>
@@ -759,6 +713,8 @@
 				<array/>
 			</dict>
 		</array>
+		<key>selected</key>
+		<true/>
 		<key>seqExpanded</key>
 		<true/>
 	</dict>

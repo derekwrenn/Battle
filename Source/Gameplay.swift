@@ -9,7 +9,7 @@ import Foundation
 
 //The location enum that's used throughout this file
 enum location{
-    case right, left, middle, bottomLeft, bottomMiddle, bottomRight, topLeft, topMiddle, topRight, none
+    case right, left, middle, bottomLeft, bottomMiddle, bottomRight, topLeft, topMiddle, topRight, up, down, none
 }
 
 class Gameplay: CCNode, CCPhysicsCollisionDelegate {
@@ -54,30 +54,9 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate {
         gamePhysicsNode.collisionDelegate = self
     }
     
-//    func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, lazer: CCNode!, ship: Ship!) {
-//        lazer.removeFromParent()
-//        if bottomShip == ship {
-//            bottomHealthBar.scaleX -= 0.05
-//            bottomShip.health -= 5
-//            
-//        } else if topShip == ship {
-//            topHealthBar.scaleX -= 0.05
-//            topShip.health -= 5
-//        }
-//        
-//        if ship.health == 0 {
-//            ship.removeFromParent()
-//            if bottomShip.health == 0 {
-//                //blue wins
-//                //let blueWinnerScene = CCBReader.loadAsScene("BlueWinner")
-//                //CCDirector.sharedDirector().presentScene(blueWinnerScene)
-//            } else if topShip.health == 0 {
-//                //red wins
-//                let redWinnerScene = CCBReader.loadAsScene("RedWinner")
-//                CCDirector.sharedDirector().presentScene(redWinnerScene)
-//            }
-//        }
-//    }
+    func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, cannonball: CCNode!, pirate: Pirate!) {
+        cannonball.removeFromParent()
+    }
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         //stores which of the 6 nodes on the screen was touched in the screenTouch var
@@ -126,7 +105,7 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate {
         switch touch {
         case .bottomLeft:
             if pirateSon.sideOfCharacter == .left && pirateSon.stateOfCharacter == .idle {
-                bottomLeftCannon.fire()
+                bottomLeftCannon.fire(.up)
                 pirateSon.fire()
             } else if pirateSon.sideOfCharacter == .middle {
                 pirateSon.flipX = true
@@ -145,7 +124,7 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate {
                 pirateSon.move(bottomMiddleLeftNode.positionInPoints, time: 0.25)
                 pirateSon.sideOfCharacter = .middle
             } else if pirateSon.sideOfCharacter == .middle && pirateSon.stateOfCharacter == .idle {
-                bottomMiddleCannon.fire()
+                bottomMiddleCannon.fire(.up)
                 pirateSon.fire()
             } else if pirateSon.sideOfCharacter == .right {
                 pirateSon.flipX = true
@@ -164,14 +143,14 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate {
                 pirateSon.move(bottomRightNode.positionInPoints, time: 0.25)
                 pirateSon.sideOfCharacter = .right
             } else if pirateSon.sideOfCharacter == .right && pirateSon.stateOfCharacter == .idle {
-                bottomRightCannon.fire()
+                bottomRightCannon.fire(.up)
                 pirateSon.fire()
             }
          
             
         case .topLeft:
             if pirateDad.sideOfCharacter == .left && pirateDad.stateOfCharacter == .idle {
-                topLeftCannon.fire()
+                topLeftCannon.fire(.down)
                 pirateDad.fire()
             } else if pirateDad.sideOfCharacter == .middle {
                 pirateDad.flipX = false
@@ -190,7 +169,7 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate {
                 pirateDad.move(topShip.convertToWorldSpace(topMiddleLeftNode.positionInPoints), time: 0.25)
                 pirateDad.sideOfCharacter = .middle
             } else if pirateDad.sideOfCharacter == .middle && pirateDad.stateOfCharacter == .idle {
-                topMiddleCannon.fire()
+                topMiddleCannon.fire(.down)
                 pirateDad.fire()
             } else if pirateDad.sideOfCharacter == .right {
                 pirateDad.flipX = false
@@ -209,7 +188,7 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate {
                 pirateDad.move(topShip.convertToWorldSpace(topRightNode.positionInPoints), time: 0.25)
                 pirateDad.sideOfCharacter = .right
             } else if pirateDad.sideOfCharacter == .right && pirateDad.stateOfCharacter == .idle {
-                topRightCannon.fire()
+                topRightCannon.fire(.down)
                 pirateDad.fire()
             }
         default:
