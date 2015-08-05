@@ -45,7 +45,7 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate {
     weak var topShip: CCNode!
     
     override func update(delta: CCTime) {
-      
+
     }
     
     func didLoadFromCCB() {
@@ -56,14 +56,51 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate {
     
     func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, cannonball: CCNode!, pirate: Pirate!) {
         cannonball.removeFromParent()
+        pirate.gotHit()
     }
+    
+
+    var touchBeganLocation : CGPoint = ccp(0,0)
+    var touchMovedLocation : CGPoint = ccp(0,0)
+    var nodeOfTouch : location = .none
+    var ran = false
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         //stores which of the 6 nodes on the screen was touched in the screenTouch var
-        var screenTouch = whereScreenIsTouched(touch)
-        
+        var screenTouch : location = whereScreenIsTouched(touch)
+        ran = false
+        nodeOfTouch = screenTouch
+        touchBeganLocation = touch.locationInWorld()
         //passes in the location and either moves or fires the ship
+
         moveOrFire(screenTouch)
+        
+    }
+    
+    override func touchMoved(touch: CCTouch!, withEvent event: CCTouchEvent!) {
+        touchMovedLocation = touch.locationInWorld()
+    
+        
+        if nodeOfTouch == .bottomLeft || nodeOfTouch == .bottomMiddle || nodeOfTouch == .bottomRight {
+            if pirateSon.isjumping == false {
+                    if touchMovedLocation.y - touchBeganLocation.y >= 50 && touchMovedLocation.y - touchBeganLocation.y <= 75 {
+                        pirateSon.jump()
+                    }
+            }
+        }
+        else if nodeOfTouch == .topLeft || nodeOfTouch == .topMiddle || nodeOfTouch == .topRight {
+            if pirateDad.isjumping == false {
+                if touchBeganLocation.y - touchMovedLocation.y >= 50 && touchBeganLocation.y - touchMovedLocation.y <= 75 {
+                    pirateDad.jump()
+                }
+            }
+        }
+        
+        
+    }
+    
+    override func touchEnded(touch: CCTouch!, withEvent event: CCTouchEvent!) {
+   
     }
     
     func whereScreenIsTouched(touch : CCTouch) -> location{
@@ -81,27 +118,21 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate {
         
         //algorithm that decides where the screen was touched
         if locationOfTouch.y < screenHalfy /* bottom half of screen */{
-            if locationOfTouch.x < screenLeftx /* left side of screen */{
-                whereScreenIsTouched = .bottomLeft
-            } else if locationOfTouch.x < screenRightx /* middle of screen */{
-                whereScreenIsTouched = .bottomMiddle
-            } else if locationOfTouch.x > screenRightx /* right side of screen */{
-                whereScreenIsTouched = .bottomRight
-            }
+            if locationOfTouch.x < screenLeftx { whereScreenIsTouched = .bottomLeft }
+            else if locationOfTouch.x < screenRightx { whereScreenIsTouched = .bottomMiddle }
+            else if locationOfTouch.x > screenRightx { whereScreenIsTouched = .bottomRight }
         } else if locationOfTouch.y > screenHalfy /* top half of screen */{
-            if locationOfTouch.x < screenLeftx /* left side of screen */ {
-                whereScreenIsTouched = .topLeft
-            } else if locationOfTouch.x < screenRightx /* middle of screen */ {
-                whereScreenIsTouched = .topMiddle
-            } else if locationOfTouch.x > screenRightx /* right side of screen */ {
-                whereScreenIsTouched = .topRight
-            }
+            if locationOfTouch.x < screenLeftx { whereScreenIsTouched = .topLeft }
+            else if locationOfTouch.x < screenRightx { whereScreenIsTouched = .topMiddle }
+            else if locationOfTouch.x > screenRightx { whereScreenIsTouched = .topRight }
         }
+        
         return whereScreenIsTouched
-
     }
     
     func moveOrFire(touch : location){
+        
+        if pirateSon.isjumping == false {
         switch touch {
         case .bottomLeft:
             if pirateSon.sideOfCharacter == .left && pirateSon.stateOfCharacter == .idle {
@@ -146,8 +177,13 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate {
                 bottomRightCannon.fire(.up)
                 pirateSon.fire()
             }
-         
-            
+        default:
+            println("oh noes")
+        }
+        }
+        
+        if pirateDad.isjumping == false{
+        switch touch {
         case .topLeft:
             if pirateDad.sideOfCharacter == .left && pirateDad.stateOfCharacter == .idle {
                 topLeftCannon.fire(.down)
@@ -194,9 +230,7 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate {
         default:
             println("boom")
         }
-        
-
-
+        }
     }
 }
 

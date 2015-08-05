@@ -16,7 +16,7 @@
 	<key>currentResolution</key>
 	<integer>0</integer>
 	<key>currentSequenceId</key>
-	<integer>2</integer>
+	<integer>4</integer>
 	<key>docDimensionsType</key>
 	<integer>1</integer>
 	<key>fileType</key>
@@ -526,6 +526,212 @@
 					<integer>7</integer>
 				</dict>
 			</dict>
+			<key>3</key>
+			<dict>
+				<key>spriteFrame</key>
+				<dict>
+					<key>keyframes</key>
+					<array>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>0</integer>
+							</dict>
+							<key>name</key>
+							<string>spriteFrame</string>
+							<key>time</key>
+							<real>0.0</real>
+							<key>type</key>
+							<integer>7</integer>
+							<key>value</key>
+							<array>
+								<string>Assets/Pirate Son/Hurt/Hurt_000.png</string>
+								<string>Use regular file</string>
+							</array>
+						</dict>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>0</integer>
+							</dict>
+							<key>name</key>
+							<string>spriteFrame</string>
+							<key>time</key>
+							<real>0.10000000149011612</real>
+							<key>type</key>
+							<integer>7</integer>
+							<key>value</key>
+							<array>
+								<string>Assets/Pirate Son/Hurt/Hurt_001.png</string>
+								<string>Use regular file</string>
+							</array>
+						</dict>
+					</array>
+					<key>name</key>
+					<string>spriteFrame</string>
+					<key>type</key>
+					<integer>7</integer>
+				</dict>
+			</dict>
+			<key>4</key>
+			<dict>
+				<key>spriteFrame</key>
+				<dict>
+					<key>keyframes</key>
+					<array>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>0</integer>
+							</dict>
+							<key>name</key>
+							<string>spriteFrame</string>
+							<key>time</key>
+							<real>0.0</real>
+							<key>type</key>
+							<integer>7</integer>
+							<key>value</key>
+							<array>
+								<string>Assets/Pirate Son/Jump NEW/newjump0.png</string>
+								<string>Use regular file</string>
+							</array>
+						</dict>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>0</integer>
+							</dict>
+							<key>name</key>
+							<string>spriteFrame</string>
+							<key>time</key>
+							<real>0.13333334028720856</real>
+							<key>type</key>
+							<integer>7</integer>
+							<key>value</key>
+							<array>
+								<string>Assets/Pirate Son/Jump NEW/newjump2.png</string>
+								<string>Use regular file</string>
+							</array>
+						</dict>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>0</integer>
+							</dict>
+							<key>name</key>
+							<string>spriteFrame</string>
+							<key>time</key>
+							<real>0.26666668057441711</real>
+							<key>type</key>
+							<integer>7</integer>
+							<key>value</key>
+							<array>
+								<string>Assets/Pirate Son/Jump NEW/newjump3.png</string>
+								<string>Use regular file</string>
+							</array>
+						</dict>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>0</integer>
+							</dict>
+							<key>name</key>
+							<string>spriteFrame</string>
+							<key>time</key>
+							<real>0.40000000596046448</real>
+							<key>type</key>
+							<integer>7</integer>
+							<key>value</key>
+							<array>
+								<string>Assets/Pirate Son/Jump NEW/newjump4.png</string>
+								<string>Use regular file</string>
+							</array>
+						</dict>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>0</integer>
+							</dict>
+							<key>name</key>
+							<string>spriteFrame</string>
+							<key>time</key>
+							<real>0.53333336114883423</real>
+							<key>type</key>
+							<integer>7</integer>
+							<key>value</key>
+							<array>
+								<string>Assets/Pirate Son/Jump NEW/newjump1.png</string>
+								<string>Use regular file</string>
+							</array>
+						</dict>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>0</integer>
+							</dict>
+							<key>name</key>
+							<string>spriteFrame</string>
+							<key>time</key>
+							<real>0.66666668653488159</real>
+							<key>type</key>
+							<integer>7</integer>
+							<key>value</key>
+							<array>
+								<string>Assets/Pirate Son/Jump NEW/newjump6.png</string>
+								<string>Use regular file</string>
+							</array>
+						</dict>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>0</integer>
+							</dict>
+							<key>name</key>
+							<string>spriteFrame</string>
+							<key>time</key>
+							<real>0.80000001192092896</real>
+							<key>type</key>
+							<integer>7</integer>
+							<key>value</key>
+							<array>
+								<string>Assets/Pirate Son/Jump NEW/newjump5.png</string>
+								<string>Use regular file</string>
+							</array>
+						</dict>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>0</integer>
+							</dict>
+							<key>name</key>
+							<string>spriteFrame</string>
+							<key>time</key>
+							<real>0.93333333730697632</real>
+							<key>type</key>
+							<integer>7</integer>
+							<key>value</key>
+							<array>
+								<string>Assets/Pirate Son/Jump NEW/newjump7.png</string>
+								<string>Use regular file</string>
+							</array>
+						</dict>
+					</array>
+					<key>name</key>
+					<string>spriteFrame</string>
+					<key>type</key>
+					<integer>7</integer>
+				</dict>
+			</dict>
 		</dict>
 		<key>baseClass</key>
 		<string>CCSprite</string>
@@ -570,48 +776,40 @@
 			<key>points</key>
 			<array>
 				<array>
-					<real>13.723674774169922</real>
-					<real>299.84402465820312</real>
+					<real>0.0</real>
+					<real>0.0</real>
 				</array>
 				<array>
-					<real>176.81900024414062</real>
-					<real>392.75875854492188</real>
+					<real>0.0</real>
+					<real>375</real>
 				</array>
 				<array>
-					<real>312.83755493164062</real>
-					<real>299.66128540039062</real>
+					<real>309</real>
+					<real>375</real>
 				</array>
 				<array>
-					<real>217.92930603027344</real>
-					<real>-7.9075827598571777</real>
-				</array>
-				<array>
-					<real>130.03475952148438</real>
-					<real>-7.2624707221984863</real>
+					<real>309</real>
+					<real>0.0</real>
 				</array>
 			</array>
 			<key>polygons</key>
 			<array>
 				<array>
 					<array>
-						<real>130.03475952148438</real>
-						<real>-7.2624707221984863</real>
+						<real>309</real>
+						<real>0.0</real>
 					</array>
 					<array>
-						<real>217.92930603027344</real>
-						<real>-7.9075827598571777</real>
+						<real>309</real>
+						<real>375</real>
 					</array>
 					<array>
-						<real>312.83755493164062</real>
-						<real>299.66128540039062</real>
+						<real>0.0</real>
+						<real>375</real>
 					</array>
 					<array>
-						<real>176.81900024414062</real>
-						<real>392.75875854492188</real>
-					</array>
-					<array>
-						<real>13.723674774169922</real>
-						<real>299.84402465820312</real>
+						<real>0.0</real>
+						<real>0.0</real>
 					</array>
 				</array>
 			</array>
@@ -885,6 +1083,78 @@
 			<real>512</real>
 			<key>sequenceId</key>
 			<integer>2</integer>
+			<key>soundChannel</key>
+			<dict>
+				<key>isExpanded</key>
+				<false/>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>11</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>autoPlay</key>
+			<false/>
+			<key>callbackChannel</key>
+			<dict>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>12</integer>
+			</dict>
+			<key>chainedSequenceId</key>
+			<integer>0</integer>
+			<key>length</key>
+			<real>0.5</real>
+			<key>name</key>
+			<string>hit</string>
+			<key>offset</key>
+			<real>0.0</real>
+			<key>position</key>
+			<real>0.5</real>
+			<key>resolution</key>
+			<real>30</real>
+			<key>scale</key>
+			<real>128</real>
+			<key>sequenceId</key>
+			<integer>3</integer>
+			<key>soundChannel</key>
+			<dict>
+				<key>isExpanded</key>
+				<false/>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>11</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>autoPlay</key>
+			<false/>
+			<key>callbackChannel</key>
+			<dict>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>12</integer>
+			</dict>
+			<key>chainedSequenceId</key>
+			<integer>0</integer>
+			<key>length</key>
+			<real>1</real>
+			<key>name</key>
+			<string>jump</string>
+			<key>offset</key>
+			<real>0.24335803091526031</real>
+			<key>position</key>
+			<real>0.96666663885116577</real>
+			<key>resolution</key>
+			<real>30</real>
+			<key>scale</key>
+			<real>416.14324951171875</real>
+			<key>sequenceId</key>
+			<integer>4</integer>
 			<key>soundChannel</key>
 			<dict>
 				<key>isExpanded</key>

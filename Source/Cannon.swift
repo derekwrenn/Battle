@@ -13,11 +13,12 @@ class Cannon: Pirate {
     weak var spawn: CCNode!
     
         func fire(direction: location) {
+            
             stopAllActions()
             animationManager.runAnimationsForSequenceNamed("fire")
             
             // create and add a new obstacle
-            let cannonball = CCBReader.load("CannonBall")
+            let cannonball = CCBReader.load("Cannonball")
             cannonball.zOrder = 100
             self.parent.parent.addChild(cannonball)
             cannonball.position = self.convertToWorldSpace(spawn.positionInPoints)
@@ -25,10 +26,11 @@ class Cannon: Pirate {
     
             // shoots up or down on the screen based on the argument that is passed in
             if direction == .up {
-                cannonball.physicsBody.applyImpulse(ccp(0, 500))
+                cannonball.physicsBody.applyImpulse(ccp(0, 200))
             } else if direction == .down {
-                cannonball.physicsBody.applyImpulse(ccp(0, -500))
+                cannonball.physicsBody.applyImpulse(ccp(0, -200))
             }
+            
         }
 
     

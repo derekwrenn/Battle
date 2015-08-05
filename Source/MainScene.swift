@@ -18,9 +18,5 @@ class MainScene: CCNode {
         let mainScene = CCBReader.loadAsScene("MainScene")
         CCDirector.sharedDirector().presentScene(mainScene)
     }
-    
-    func colorSelect(){
-        let colorScene = CCBReader.loadAsScene("ColorSelect")
-        CCDirector.sharedDirector().presentScene(colorScene)
-    }
+
 }
