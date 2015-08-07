@@ -66,7 +66,7 @@
 			<key>collisionType</key>
 			<string>cannonball</string>
 			<key>cornerRadius</key>
-			<real>13.953581809997559</real>
+			<real>11.740090370178223</real>
 			<key>density</key>
 			<real>1</real>
 			<key>dynamic</key>
@@ -78,8 +78,8 @@
 			<key>points</key>
 			<array>
 				<array>
-					<real>18.645666122436523</real>
-					<real>12.242469787597656</real>
+					<real>17.877773284912109</real>
+					<real>13.68795108795166</real>
 				</array>
 			</array>
 			<key>polygons</key>

@@ -52,7 +52,6 @@ class Pirate: CCSprite {
     func fire() {
         animationManager.runAnimationsForSequenceNamed("fire")
         ammo--
-        println("In Pirate: \(ammo)")
     }
     
     func changeToRunning() {
@@ -65,6 +64,5 @@ class Pirate: CCSprite {
     
     func gotHit() {
         animationManager.runAnimationsForSequenceNamed("hit")
-        health--
     }
 }

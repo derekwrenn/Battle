@@ -48,6 +48,12 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate {
     //topship code connection (used later for movement on the top side)
     weak var topShip: CCNode!
     
+    //The 4 boxes
+    weak var bottomAmmoBox: CCLayoutBox!
+    weak var bottomHealthBox: CCLayoutBox!
+    weak var topHealthBox: CCLayoutBox!
+    weak var topAmmoBox: CCLayoutBox!
+    
     //first thing that runs when the .ccb is loaded
     func didLoadFromCCB() {
         userInteractionEnabled = true
@@ -80,18 +86,44 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate {
     func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, cannonball: CCSprite!, pirate: Pirate!) {
         cannonball.removeFromParent()
         pirate.gotHit()
+        pirate.health--
+        
+        if pirate == pirateSon {
+            let sonHeart = bottomHealthBox.children[pirateSon.health] as! CCSprite
+            sonHeart.visible = false
+        }
+        else if pirate == pirateDad {
+            let dadHeart = topHealthBox.children[pirateDad.health] as! CCSprite
+            dadHeart.visible = false
+        }
     }
     
     //collision when a pirate hits health
     func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, health: CCSprite!, pirate: Pirate!) {
         health.removeFromParent()
         pirate.health++
+        if pirate == pirateSon && pirateSon.health < 5 {
+            let sonHeart = bottomHealthBox.children[pirateSon.health - 1] as! CCSprite
+            sonHeart.visible = true
+        }
+        else if pirate == pirateDad && pirateDad.health < 5 {
+            let dadHeart = topHealthBox.children[pirateDad.health - 1] as! CCSprite
+            dadHeart.visible = true
+        }
     }
     
     //collision when a pirate hits ammmo
     func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, ammo: CCSprite!, pirate: Pirate!) {
         ammo.removeFromParent()
         pirate.ammo++
+        if pirate == pirateSon && pirateSon.ammo < 5 {
+            let sonAmmo = bottomAmmoBox.children[pirateSon.ammo - 1] as! CCSprite
+            sonAmmo.visible = true
+        }
+        else if pirate == pirateDad && pirateDad.ammo < 5 {
+            let dadAmmo = topAmmoBox.children[pirateDad.ammo - 1] as! CCSprite
+            dadAmmo.visible = true
+        }
     }
     
     //3 class variables that are used in the touch functions to determine swipes and taps
@@ -172,8 +204,12 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate {
             switch touch {
                 case .bottomLeft:
                     if pirateSon.sideOfCharacter == .left && pirateSon.stateOfCharacter == .idle {
-                        bottomLeftCannon.fire(.up)
-                        pirateSon.fire()
+                        if pirateSon.ammo > 0 {
+                            pirateSon.fire()
+                            bottomLeftCannon.fire(.up)
+                            let sonAmmo = bottomAmmoBox.children[pirateSon.ammo] as! CCSprite
+                            sonAmmo.visible = false
+                        }
                     } else if pirateSon.sideOfCharacter == .middle {
                         pirateSon.flipX = true
                         pirateSon.move(bottomLeftNode.positionInPoints, time: 0.25)
@@ -189,8 +225,12 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate {
                         pirateSon.move(bottomMiddleLeftNode.positionInPoints, time: 0.25)
                         pirateSon.sideOfCharacter = .middle
                     } else if pirateSon.sideOfCharacter == .middle && pirateSon.stateOfCharacter == .idle {
-                        bottomMiddleCannon.fire(.up)
-                        pirateSon.fire()
+                        if pirateSon.ammo > 0 {
+                            pirateSon.fire()
+                            bottomMiddleCannon.fire(.up)
+                            let sonAmmo = bottomAmmoBox.children[pirateSon.ammo] as! CCSprite
+                            sonAmmo.visible = false
+                        }
                     } else if pirateSon.sideOfCharacter == .right {
                         pirateSon.flipX = true
                         pirateSon.move(bottomMiddleRightNode.positionInPoints, time: 0.25)
@@ -206,8 +246,12 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate {
                         pirateSon.move(bottomRightNode.positionInPoints, time: 0.25)
                         pirateSon.sideOfCharacter = .right
                     } else if pirateSon.sideOfCharacter == .right && pirateSon.stateOfCharacter == .idle {
-                        bottomRightCannon.fire(.up)
-                        pirateSon.fire()
+                        if pirateSon.ammo > 0 {
+                            pirateSon.fire()
+                            bottomRightCannon.fire(.up)
+                            let sonAmmo = bottomAmmoBox.children[pirateSon.ammo] as! CCSprite
+                            sonAmmo.visible = false
+                        }
                     }
                 default:
                     print("")
@@ -219,8 +263,12 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate {
             switch touch {
                 case .topLeft:
                     if pirateDad.sideOfCharacter == .left && pirateDad.stateOfCharacter == .idle {
-                        topLeftCannon.fire(.down)
-                        pirateDad.fire()
+                        if pirateDad.ammo > 0 {
+                            pirateDad.fire()
+                            topLeftCannon.fire(.down)
+                            let dadAmmo = topAmmoBox.children[pirateDad.ammo] as! CCSprite
+                            dadAmmo.visible = false
+                        }
                     } else if pirateDad.sideOfCharacter == .middle {
                         pirateDad.flipX = false
                         pirateDad.move(topShip.convertToWorldSpace(topLeftNode.positionInPoints), time: 0.25)
@@ -236,8 +284,12 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate {
                         pirateDad.move(topShip.convertToWorldSpace(topMiddleLeftNode.positionInPoints), time: 0.25)
                         pirateDad.sideOfCharacter = .middle
                     } else if pirateDad.sideOfCharacter == .middle && pirateDad.stateOfCharacter == .idle {
-                        topMiddleCannon.fire(.down)
-                        pirateDad.fire()
+                        if pirateDad.ammo > 0 {
+                            pirateDad.fire()
+                            topMiddleCannon.fire(.down)
+                            let dadAmmo = topAmmoBox.children[pirateDad.ammo] as! CCSprite
+                            dadAmmo.visible = false
+                        }
                     } else if pirateDad.sideOfCharacter == .right {
                         pirateDad.flipX = false
                         pirateDad.move(topShip.convertToWorldSpace(topMiddleRightNode.positionInPoints), time: 0.25)
@@ -253,8 +305,12 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate {
                         pirateDad.move(topShip.convertToWorldSpace(topRightNode.positionInPoints), time: 0.25)
                         pirateDad.sideOfCharacter = .right
                     } else if pirateDad.sideOfCharacter == .right && pirateDad.stateOfCharacter == .idle {
-                        topRightCannon.fire(.down)
-                        pirateDad.fire()
+                        if pirateDad.ammo > 0 {
+                            pirateDad.fire()
+                            topRightCannon.fire(.down)
+                            let dadAmmo = topAmmoBox.children[pirateDad.ammo] as! CCSprite
+                            dadAmmo.visible = false
+                        }
                     }
                 default:
                     print("")

@@ -7,18 +7,17 @@
 
 import Foundation
 
-class Cannon: Pirate {
+class Cannon: CCSprite {
     
     weak var spawn: CCNode!
     
     func fire(direction: location) {
-        println("In Cannon: \(ammo)")
-        if ammo > 0 {
+       
             stopAllActions()
             animationManager.runAnimationsForSequenceNamed("fire")
             // create and add a new obstacle
             let cannonball = CCBReader.load("Cannonball")
-            cannonball.scale = 1.5
+            cannonball.scale = 1.3
             self.parent.parent.addChild(cannonball)
             cannonball.position = self.convertToWorldSpace(spawn.positionInPoints)
 
@@ -30,6 +29,6 @@ class Cannon: Pirate {
                 cannonball.physicsBody.applyImpulse(ccp(0, -200))
                 cannonball.physicsBody.applyAngularImpulse(-500)
             }
-        }
+        
     }
 }
