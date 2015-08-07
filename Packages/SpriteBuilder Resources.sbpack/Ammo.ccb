@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -57,16 +57,16 @@
 			<integer>1</integer>
 			<key>collisionCategories</key>
 			<array>
-				<string>cannonball</string>
+				<string>ammo</string>
 			</array>
 			<key>collisionMask</key>
 			<array>
 				<string>pirate</string>
 			</array>
 			<key>collisionType</key>
-			<string>cannonball</string>
+			<string>ammo</string>
 			<key>cornerRadius</key>
-			<real>13.953581809997559</real>
+			<real>20</real>
 			<key>density</key>
 			<real>1</real>
 			<key>dynamic</key>
@@ -78,8 +78,8 @@
 			<key>points</key>
 			<array>
 				<array>
-					<real>18.645666122436523</real>
-					<real>12.242469787597656</real>
+					<real>18.5</real>
+					<real>18.5</real>
 				</array>
 			</array>
 			<key>polygons</key>
@@ -228,7 +228,7 @@
 				<integer>12</integer>
 			</dict>
 			<key>chainedSequenceId</key>
-			<integer>0</integer>
+			<integer>-1</integer>
 			<key>length</key>
 			<real>10</real>
 			<key>name</key>
@@ -236,7 +236,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.0</real>
+			<real>1.3999999761581421</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>

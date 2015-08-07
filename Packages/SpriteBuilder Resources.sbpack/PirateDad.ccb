@@ -2091,6 +2091,8 @@
 			</array>
 			<key>collisionMask</key>
 			<array>
+				<string>health</string>
+				<string>ammo</string>
 				<string>cannonball</string>
 			</array>
 			<key>collisionType</key>
@@ -2243,6 +2245,8 @@
 				<array/>
 			</dict>
 		</array>
+		<key>selected</key>
+		<true/>
 		<key>seqExpanded</key>
 		<true/>
 	</dict>
