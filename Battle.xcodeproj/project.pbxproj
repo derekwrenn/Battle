@@ -44,6 +44,8 @@
 		7A97911819E631CD001FFC4D /* libcocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A9790FE19E62E40001FFC4D /* libcocos2d.a */; };
 		8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
 		8B9318C41B6AB8260080496B /* Cannon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9318C31B6AB8260080496B /* Cannon.swift */; };
+		8B9319761B7924C20080496B /* WinnerDad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9319751B7924C20080496B /* WinnerDad.swift */; };
+		8B93197A1B7926720080496B /* WinnerSon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9319791B7926720080496B /* WinnerSon.swift */; };
 		8B9611FD1B45DA1D00DC753B /* Pirate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9611FC1B45DA1D00DC753B /* Pirate.swift */; };
 		8BD1A68A1B50564500DEFE62 /* Gameplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1A6891B50564500DEFE62 /* Gameplay.swift */; };
 		927F61A5196C771E000F43EF /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3517B978D7009739AE /* OpenAL.framework */; };
@@ -175,6 +177,8 @@
 		7BF6AF9F1A425F9800FFF9BA /* JavaFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaFoundation.framework; path = "../../../../../../../Library/SBAndroid/Application Support/Developer/Shared/Xcode/Platforms/Android.platform/Developer/SDKs/SBAndroid.sdk/System/Library/Frameworks/JavaFoundation.framework"; sourceTree = "<group>"; };
 		8392007918EE8E3300B6C429 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		8B9318C31B6AB8260080496B /* Cannon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Cannon.swift; path = Source/Cannon.swift; sourceTree = "<group>"; };
+		8B9319751B7924C20080496B /* WinnerDad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WinnerDad.swift; path = Source/WinnerDad.swift; sourceTree = "<group>"; };
+		8B9319791B7926720080496B /* WinnerSon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WinnerSon.swift; path = Source/WinnerSon.swift; sourceTree = "<group>"; };
 		8B9611FC1B45DA1D00DC753B /* Pirate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pirate.swift; path = Source/Pirate.swift; sourceTree = "<group>"; };
 		8BD1A6891B50564500DEFE62 /* Gameplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gameplay.swift; path = Source/Gameplay.swift; sourceTree = "<group>"; };
 		927F61BF196C771E000F43EF /* Battle Android.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Battle Android.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -442,6 +446,8 @@
 				7A40362019DDEF0D007B6E8F /* Platforms */,
 				7A046D7519E84C36004C4763 /* MainScene.swift */,
 				8BD1A6891B50564500DEFE62 /* Gameplay.swift */,
+				8B9319751B7924C20080496B /* WinnerDad.swift */,
+				8B9319791B7926720080496B /* WinnerSon.swift */,
 				8B9611FC1B45DA1D00DC753B /* Pirate.swift */,
 				8B9318C31B6AB8260080496B /* Cannon.swift */,
 				D352B48019EC608A00829775 /* MetalShaders */,
@@ -821,8 +827,10 @@
 			files = (
 				B73789871807631A0076A88C /* main.m in Sources */,
 				8B9611FD1B45DA1D00DC753B /* Pirate.swift in Sources */,
+				8B9319761B7924C20080496B /* WinnerDad.swift in Sources */,
 				7A046D7919E84ED5004C4763 /* MainScene.swift in Sources */,
 				8BD1A68A1B50564500DEFE62 /* Gameplay.swift in Sources */,
+				8B93197A1B7926720080496B /* WinnerSon.swift in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
 				8B9318C41B6AB8260080496B /* Cannon.swift in Sources */,
 			);

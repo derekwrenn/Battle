@@ -17,12 +17,12 @@ class Pirate: CCSprite {
     var isjumping : Bool = false
     var health = 5
     var ammo = 5
+    var isDead = false
     
     override func update(delta: CCTime) {
         if health <= 0 {
             stateOfCharacter = .dead
-            println("DEAD!")
-            //call the winner screen for the opposite pirate
+            isDead = true
         }
     }
     

@@ -9,10 +9,10 @@ import Foundation
 
 // The location enum that's used throughout this project
 enum location{
-    case right, left, middle, bottomLeft, bottomMiddle, bottomRight, topLeft, topMiddle, topRight, up, down, none
+    case right, left, middle, top, bottom, bottomLeft, bottomMiddle, bottomRight, topLeft, topMiddle, topRight, up, down, none
 }
 
-class Gameplay: CCNode, CCPhysicsCollisionDelegate {
+class Gameplay: CCScene, CCPhysicsCollisionDelegate {
     
     weak var gamePhysicsNode: CCPhysicsNode!
     
@@ -54,32 +54,67 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate {
     weak var topHealthBox: CCLayoutBox!
     weak var topAmmoBox: CCLayoutBox!
     
+    //Self explanitory
+    var healthSpawnTimer : NSTimer!
+    var ammoSpawnTimer : NSTimer!
+    var jumpTimerBottom : NSTimer!
+    var jumpTimerTop: NSTimer!
+    
+    override func update(delta: CCTime) {
+        if pirateSon.isDead == true{
+            healthSpawnTimer.invalidate()
+            ammoSpawnTimer.invalidate()
+            let dadWinnerScene = CCBReader.loadAsScene("WinnerDad")
+            CCDirector.sharedDirector().presentScene(dadWinnerScene)
+        }
+        
+        else if pirateDad.isDead == true{
+            healthSpawnTimer.invalidate()
+            ammoSpawnTimer.invalidate()
+            let sonWinnerScene = CCBReader.loadAsScene("WinnerSon")
+            CCDirector.sharedDirector().presentScene(sonWinnerScene)
+        }
+    }
+    
     //first thing that runs when the .ccb is loaded
     func didLoadFromCCB() {
         userInteractionEnabled = true
         multipleTouchEnabled = true
         gamePhysicsNode.collisionDelegate = self
-        gamePhysicsNode.debugDraw = true
-        var ammoAndHealthSpawnTimer = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(2.0), target: self, selector: Selector("dropHealthOrAmmo"), userInfo: nil, repeats: true)
+        //gamePhysicsNode.debugDraw = true
+        healthSpawnTimer = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(6.0), target: self, selector: Selector("spawnHealth"), userInfo: nil, repeats: true)
+        ammoSpawnTimer = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(3.0), target: self, selector: Selector("spawnAmmo"), userInfo: nil, repeats: true)
     }
     
-    func dropHealthOrAmmo(){
-        spawnAmmo()
-        spawnHealth()
+ 
+    func makeSonJump(){
+        if pirateSon.isjumping == false {
+            pirateSon.jump()
+            firstJumpBottom = true
+        }
+    }
+    
+    func makeDadJump(){
+        if pirateDad.isjumping == false {
+            pirateDad.jump()
+            firstJumpTop = true
+        }
     }
     
     func spawnAmmo(){
         let ammo = CCBReader.load("Ammo")
         gamePhysicsNode.addChild(ammo)
         ammo.position = spawnAmmoHealthLeft.positionInPoints
-        ammo.physicsBody.applyImpulse(ccp(100,0))
+        ammo.physicsBody.velocity.x = 100.0
+        ammo.physicsBody.applyAngularImpulse(-500)
     }
     
     func spawnHealth(){
         let health = CCBReader.load("Health")
         gamePhysicsNode.addChild(health)
         health.position = spawnAmmoHealthRight.positionInPoints
-        health.physicsBody.applyImpulse(ccp(-100,0))
+        health.physicsBody.velocity.x = -100.0
+        health.physicsBody.applyAngularImpulse(500)
     }
     
     //collision that is triggered when a cannonball hits a pirate
@@ -101,12 +136,13 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate {
     //collision when a pirate hits health
     func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, health: CCSprite!, pirate: Pirate!) {
         health.removeFromParent()
-        pirate.health++
         if pirate == pirateSon && pirateSon.health < 5 {
+            pirateSon.health++
             let sonHeart = bottomHealthBox.children[pirateSon.health - 1] as! CCSprite
             sonHeart.visible = true
         }
         else if pirate == pirateDad && pirateDad.health < 5 {
+            pirateDad.health++
             let dadHeart = topHealthBox.children[pirateDad.health - 1] as! CCSprite
             dadHeart.visible = true
         }
@@ -114,58 +150,87 @@ class Gameplay: CCNode, CCPhysicsCollisionDelegate {
     
     //collision when a pirate hits ammmo
     func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, ammo: CCSprite!, pirate: Pirate!) {
-        ammo.removeFromParent()
-        pirate.ammo++
-        if pirate == pirateSon && pirateSon.ammo < 5 {
-            let sonAmmo = bottomAmmoBox.children[pirateSon.ammo - 1] as! CCSprite
+        gamePhysicsNode.space.addPostStepBlock({ () -> Void in
+            ammo.removeFromParent()
+        }, key: ammo)
+        
+        
+        gamePhysicsNode.space.addPostStepBlock({ () -> Void in
+
+        if pirate.ammo < 5{
+            pirate.ammo++
+        }
+        if pirate == self.pirateSon && self.pirateSon.ammo <= 5 {
+            let sonAmmo = self.bottomAmmoBox.children[self.pirateSon.ammo - 1] as! CCSprite
             sonAmmo.visible = true
         }
-        else if pirate == pirateDad && pirateDad.ammo < 5 {
-            let dadAmmo = topAmmoBox.children[pirateDad.ammo - 1] as! CCSprite
+        else if pirate == self.pirateDad && self.pirateDad.ammo <= 5 {
+            let dadAmmo = self.topAmmoBox.children[self.pirateDad.ammo - 1] as! CCSprite
             dadAmmo.visible = true
-        }
+        
+            }
+        }, key: pirate)
     }
     
-    //3 class variables that are used in the touch functions to determine swipes and taps
-    var touchBeganLocation : CGPoint = ccp(0,0)
-    var touchMovedLocation : CGPoint = ccp(0,0)
-    var nodeOfTouch : location = .none
 
+    func simplifyEnum(oldLocation : location) -> location{
+        var newLocation : location = .none
+        
+        if oldLocation == .bottomLeft || oldLocation == .bottomMiddle || oldLocation == .bottomRight{
+            newLocation = .bottom
+        }
+        else if oldLocation == .topLeft || oldLocation == .topMiddle || oldLocation == .topRight{
+            newLocation = .top
+        }
+        
+        return newLocation
+    }
+    
+    var touchSideStart : location = .none
+    var touchSideEnd : location = .none
+    var firstJumpBottom = false
+    var firstJumpTop = false
     //function that is triggered when a user touch begins
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
-        var screenTouch : location = whereScreenIsTouched(touch) //stores the enum where the screen was touched
-        nodeOfTouch = screenTouch                                //saves that enum into the class variable
-        touchBeganLocation = touch.locationInWorld()             //stores the touch location into the class variable
-        moveOrFire(screenTouch)                                  //passes the enum into the moveOrFire function
-    }
-    
-    //function that is triggered when the user moves their touch
-    override func touchMoved(touch: CCTouch!, withEvent event: CCTouchEvent!) {
-        touchMovedLocation = touch.locationInWorld() //stores the touch locations into the class variable
         
-        //if the touch originated in the bottom 3 nodes, the pirate is not jumping, and if the length of the swipe up becomes
-        //between 50 and 75 pixels, then jump the pirateSon.
-        if nodeOfTouch == .bottomLeft || nodeOfTouch == .bottomMiddle || nodeOfTouch == .bottomRight {
-            if pirateSon.isjumping == false {
-                    if touchMovedLocation.y - touchBeganLocation.y >= 50 && touchMovedLocation.y - touchBeganLocation.y <= 75 {
-                        pirateSon.jump()
-                    }
-            }
+        
+        var screenTouch : location = whereScreenIsTouched(touch) //stores the enum where the screen was touched
+        touchSideStart = simplifyEnum(screenTouch)
+        
+        if firstJumpBottom == true && touchSideStart == .bottom {
+            jumpTimerBottom.invalidate()
+        } else if firstJumpTop == true && touchSideStart == .top{
+            jumpTimerTop.invalidate()
         }
-        //else if the touch originated in the top 3 nodes, the pirate is not jumping, and if the length of the swipe down becomes
-        //between 50 and 75 pixels, then jump the pirateDad.
-        else if nodeOfTouch == .topLeft || nodeOfTouch == .topMiddle || nodeOfTouch == .topRight {
-            if pirateDad.isjumping == false {
-                if touchBeganLocation.y - touchMovedLocation.y >= 50 && touchBeganLocation.y - touchMovedLocation.y <= 75 {
-                    pirateDad.jump()
-                }
-            }
+        
+        
+        if touchSideStart == .bottom{
+            jumpTimerBottom = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(0.15),
+                                                               target: self,
+                                                               selector: Selector("makeSonJump"),
+                                                               userInfo: nil,
+                                                               repeats: false)
+        } else if touchSideStart == .top{
+            jumpTimerTop = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(0.15),
+                                                               target: self,
+                                                               selector: Selector("makeDadJump"),
+                                                               userInfo: nil,
+                                                               repeats: false)
         }
     }
     
     //function that is triggered when the user ends their touch
     override func touchEnded(touch: CCTouch!, withEvent event: CCTouchEvent!) {
-   
+        var screenTouch : location = whereScreenIsTouched(touch) //stores the enum where the screen was touched
+        moveOrFire(screenTouch)                                  //passes the enum into the moveOrFire function
+        touchSideEnd = simplifyEnum(screenTouch)
+        
+        if touchSideEnd == .bottom{
+            jumpTimerBottom.invalidate()
+        } else if touchSideEnd == .top{
+            jumpTimerTop.invalidate()
+        }
+        
     }
     
     //function that divids the screen up into 6 sections and returns the location of the touch that is passed in
