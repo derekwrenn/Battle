@@ -20,10 +20,18 @@ class Pirate: CCSprite {
     var isDead = false
     
     override func update(delta: CCTime) {
-        if health <= 0 {
+        if health <= 0 && stateOfCharacter != .dead{
             stateOfCharacter = .dead
-            isDead = true
+            runDeadAnimation()
         }
+    }
+    
+    func runDeadAnimation(){
+        animationManager.runAnimationsForSequenceNamed("dead")
+    }
+    
+    func pirateIsDead(){
+        isDead = true
     }
     
     func move(destination: CGPoint, time: CCTime) {

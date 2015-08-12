@@ -2,7 +2,7 @@
 //  Cannon.swift
 //  Battle
 //
-//  Created by Derek on 7/30/15.
+//  Created by Derek Wrenn on 7/30/15.
 //
 
 import Foundation

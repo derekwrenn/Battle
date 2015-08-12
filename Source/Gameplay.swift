@@ -15,6 +15,7 @@ enum location{
 class Gameplay: CCScene, CCPhysicsCollisionDelegate {
     
     weak var gamePhysicsNode: CCPhysicsNode!
+    weak var mainNode: CCPhysicsNode!
     
     //The 4 bottom lane nodes
     weak var bottomLeftNode: CCNode!
@@ -82,8 +83,20 @@ class Gameplay: CCScene, CCPhysicsCollisionDelegate {
         multipleTouchEnabled = true
         gamePhysicsNode.collisionDelegate = self
         //gamePhysicsNode.debugDraw = true
-        healthSpawnTimer = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(6.0), target: self, selector: Selector("spawnHealth"), userInfo: nil, repeats: true)
-        ammoSpawnTimer = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(3.0), target: self, selector: Selector("spawnAmmo"), userInfo: nil, repeats: true)
+        countdown()
+        healthSpawnTimer = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(10.0), target: self, selector: Selector("spawnHealth"), userInfo: nil, repeats: true)
+        ammoSpawnTimer = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(2.0), target: self, selector: Selector("spawnAmmo"), userInfo: nil, repeats: true)
+    }
+    
+    func countdown(){
+        animationManager.runAnimationsForSequenceNamed("Countdown")
+        pirateDad.ammo = 0
+        pirateSon.ammo = 0
+    }
+    
+    func giveAmmoBack(){
+        pirateDad.ammo = 5
+        pirateSon.ammo = 5
     }
     
  
@@ -105,7 +118,10 @@ class Gameplay: CCScene, CCPhysicsCollisionDelegate {
         let ammo = CCBReader.load("Ammo")
         gamePhysicsNode.addChild(ammo)
         ammo.position = spawnAmmoHealthLeft.positionInPoints
-        ammo.physicsBody.velocity.x = 100.0
+        
+        let width = CCDirector.sharedDirector().viewSize().width
+        let move = CCActionMoveBy(duration: 4.0, position: ccp(width*1.3,0))
+        ammo.runAction(CCActionSequence(array: [move, CCActionRemove()]))
         ammo.physicsBody.applyAngularImpulse(-500)
     }
     
@@ -113,7 +129,10 @@ class Gameplay: CCScene, CCPhysicsCollisionDelegate {
         let health = CCBReader.load("Health")
         gamePhysicsNode.addChild(health)
         health.position = spawnAmmoHealthRight.positionInPoints
-        health.physicsBody.velocity.x = -100.0
+        
+        let width = CCDirector.sharedDirector().viewSize().width
+        let move = CCActionMoveBy(duration: 4.0, position: ccp(-width*1.3,0))
+        health.runAction(CCActionSequence(array: [move, CCActionRemove()]))
         health.physicsBody.applyAngularImpulse(500)
     }
     

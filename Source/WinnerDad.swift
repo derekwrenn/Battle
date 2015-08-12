@@ -3,14 +3,17 @@
 //  Battle
 //
 //  Created by Developer on 8/10/15.
-//  Copyright (c) 2015 Apportable. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class WinnerDad: CCScene {
     func restart(){
         let gameplayScene = CCBReader.loadAsScene("Gameplay")
         CCDirector.sharedDirector().presentScene(gameplayScene)
+    }
+    func mainScene(){
+        let mainScene = CCBReader.loadAsScene("MainScene")
+        CCDirector.sharedDirector().presentScene(mainScene)
     }
 }

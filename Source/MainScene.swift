@@ -8,10 +8,8 @@
 import Foundation
 
 class MainScene: CCScene {
-
     
-    
-    func twoPlayer(){
+    func gameplay(){
         let gameplayScene = CCBReader.loadAsScene("Gameplay")
         CCDirector.sharedDirector().presentScene(gameplayScene)
     }
