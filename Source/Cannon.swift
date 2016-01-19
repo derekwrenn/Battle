@@ -18,7 +18,7 @@ class Cannon: CCSprite {
             // create and add a new obstacle
             let cannonball = CCBReader.load("Cannonball")
             cannonball.scale = 1.3
-            self.parent.parent.addChild(cannonball)
+            self.parent!.parent!.addChild(cannonball)
             cannonball.position = self.convertToWorldSpace(spawn.positionInPoints)
 
             // shoots up or down on the screen based on the argument that is passed in

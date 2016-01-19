@@ -18,5 +18,10 @@ class MainScene: CCScene {
         let mainScene = CCBReader.loadAsScene("MainScene")
         CCDirector.sharedDirector().presentScene(mainScene)
     }
+    
+    func playerSelect(){
+        let playerSelect = CCBReader.loadAsScene("PlayerSelect")
+        CCDirector.sharedDirector().presentScene(playerSelect)
+    }
 
 }

@@ -45,7 +45,6 @@ class Pirate: CCSprite {
     
     func jump() {
         isjumping = true
-        var locationY: CGFloat = 0.0
         animationManager.runAnimationsForSequenceNamed("jump")
         let sequence : CCActionSequence = CCActionSequence(array: [
             CCActionMoveBy(duration: 0.5, position: ccp(0, 140)),

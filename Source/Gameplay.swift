@@ -213,13 +213,17 @@ class Gameplay: CCScene, CCPhysicsCollisionDelegate {
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         
         
-        var screenTouch : location = whereScreenIsTouched(touch) //stores the enum where the screen was touched
+        let screenTouch : location = whereScreenIsTouched(touch) //stores the enum where the screen was touched
         touchSideStart = simplifyEnum(screenTouch)
         
         if firstJumpBottom == true && touchSideStart == .bottom {
-            jumpTimerBottom.invalidate()
+            if let inval = jumpTimerBottom{
+                inval.invalidate()
+            }
         } else if firstJumpTop == true && touchSideStart == .top{
-            jumpTimerTop.invalidate()
+            if let inval = jumpTimerTop{
+                inval.invalidate()
+            }
         }
         
         
@@ -240,14 +244,18 @@ class Gameplay: CCScene, CCPhysicsCollisionDelegate {
     
     //function that is triggered when the user ends their touch
     override func touchEnded(touch: CCTouch!, withEvent event: CCTouchEvent!) {
-        var screenTouch : location = whereScreenIsTouched(touch) //stores the enum where the screen was touched
+        let screenTouch : location = whereScreenIsTouched(touch) //stores the enum where the screen was touched
         moveOrFire(screenTouch)                                  //passes the enum into the moveOrFire function
         touchSideEnd = simplifyEnum(screenTouch)
         
         if touchSideEnd == .bottom{
-            jumpTimerBottom.invalidate()
+            if let inval = jumpTimerBottom{
+                inval.invalidate()
+            }
         } else if touchSideEnd == .top{
-            jumpTimerTop.invalidate()
+            if let inval = jumpTimerTop{
+                inval.invalidate()
+            }
         }
         
     }
@@ -255,13 +263,13 @@ class Gameplay: CCScene, CCPhysicsCollisionDelegate {
     //function that divids the screen up into 6 sections and returns the location of the touch that is passed in
     func whereScreenIsTouched(touch : CCTouch) -> location{
         //Uses CCDirector to divide the screen into thirds in the x direction and in half in the y direction
-        var screenLeftx = CCDirector.sharedDirector().viewSize().width / 3 //left lane line
-        var screenRightx = screenLeftx * 2                                 //right lane line
+        let screenLeftx = CCDirector.sharedDirector().viewSize().width / 3 //left lane line
+        let screenRightx = screenLeftx * 2                                 //right lane line
         
-        var screenHalfy = CCDirector.sharedDirector().viewSize().height / 2  //middle dividing line
+        let screenHalfy = CCDirector.sharedDirector().viewSize().height / 2  //middle dividing line
         
         //stores the location of the touch on the screen (x and y)
-        var locationOfTouch = touch.locationInNode(bottomLeftNode)
+        let locationOfTouch = touch.locationInNode(bottomLeftNode)
         
         //sets up a variable that stores where the screen was touched
         var whereScreenIsTouched : location = .none
@@ -338,7 +346,7 @@ class Gameplay: CCScene, CCPhysicsCollisionDelegate {
                         }
                     }
                 default:
-                    print("")
+                    print("", terminator: "")
             }
         }
         
@@ -397,7 +405,7 @@ class Gameplay: CCScene, CCPhysicsCollisionDelegate {
                         }
                     }
                 default:
-                    print("")
+                    print("", terminator: "")
             }
         }
     }
