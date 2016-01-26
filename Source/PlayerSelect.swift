@@ -2,7 +2,7 @@
 //  PlayerSelect.swift
 //  Battle
 //
-//  Created by Developer on 12/8/15.
+//  Created by Derek Wrenn on 12/8/15.
 //  Copyright © 2015 Apportable. All rights reserved.
 //
 
